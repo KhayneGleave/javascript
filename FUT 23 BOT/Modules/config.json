@@ -1,6 +1,6 @@
 {  
     "Settings": {  
-
+        
         "SESSION_ID": "FUT_23_X-UT-SID_HEADER",   
         "BOT_TOKEN" : "DISCORD_AUTH_TOKEN",
         "BOT_ID": "BOT_ID",

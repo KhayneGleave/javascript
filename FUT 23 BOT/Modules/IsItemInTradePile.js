@@ -18,8 +18,6 @@ async function IsItemInTradePile(Item_ID){
 
             Found = Item.id == Item_ID
 
-            console.log( Item.id, Item_ID, Found)
-
             if (Found) {
 
                 break

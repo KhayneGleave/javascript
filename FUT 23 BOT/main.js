@@ -8,17 +8,21 @@ const PurchasePack = require('./Modules/PurchasePack.js')
 const GetCredits = require('./Modules/GetCredits.js');
 const SortUnassigned = require('./Modules/SortUnassigned.js')
 const SetSessionKey = require('./Modules/SetSessionKey.js')
-const ListItem = require('./Modules/ListItem.js')
+const ListItem = require('./Modules/ListItem.js');
+const GetCurrentUser = require('./Modules/GetCurrentUser.js');
+const AutolistTransferPile = require('./Modules/AutolistTransferPile.js')
 
 const exampleEmbed = new EmbedBuilder().setColor(0x0099FF).setTimestamp().setFooter({ text: 'Made by Khayne Gleave', iconURL: 'https://cdn.discordapp.com/avatars/1022425579095605328/f0f8ca1c342357e236d9e420d1ab8932.webp?size=80' });
 const commands = [
 
     new SlashCommandBuilder().setName('quicksellitem').setDescription('quicksells a player with the given ID.'),
-    new SlashCommandBuilder().setName('getcredits').setDescription('quicksells a player with the given ID.'),
-    new SlashCommandBuilder().setName('purchasepack').setDescription('quicksells a player with the given ID.'),
-    new SlashCommandBuilder().setName('sortunassigned').setDescription('quicksells a player with the given ID.'),
-    new SlashCommandBuilder().setName('setsessionkey').setDescription('quicksells a player with the given ID.').addStringOption(option=>option.setName('key').setDescription('Changes the session ID to fix any invalidity error').setRequired(true)),
-    new SlashCommandBuilder().setName('listitem').setDescription('lists the item with the given ID on the transfer market.').addStringOption(option=>option.setName('input').setDescription('Lists the provided item on the transfer market').setRequired(true))
+    new SlashCommandBuilder().setName('getcredits').setDescription('returns the current user credit balance.'),
+    new SlashCommandBuilder().setName('purchasepack').setDescription('purchases a pack of given type.'),
+    new SlashCommandBuilder().setName('sortunassigned').setDescription('automatically lists players and quicksells everything else.'),
+    new SlashCommandBuilder().setName('setsessionkey').setDescription('Changes the session ID to fix any invalidity error.').addStringOption(option=>option.setName('key').setDescription('Changes the session ID to fix any invalidity error.').setRequired(true)),
+    new SlashCommandBuilder().setName('listitem').setDescription('Lists the provided item on the transfer market.').addStringOption(option=>option.setName('input').setDescription('Lists the provided item on the transfer market.').setRequired(true)),
+    new SlashCommandBuilder().setName('getcurrentuser').setDescription('returns the current logged in username'),
+    new SlashCommandBuilder().setName('autolisttransferpile').setDescription('auto lists/relist all trade pile players'),
 
 ].map(command => command.toJSON());
 
@@ -78,7 +82,22 @@ client.on('interactionCreate', async interaction => {
 
         await interaction.reply({ embeds: [exampleEmbed] });
 
+	} else if (commandName === 'getcurrentuser') {
+
+        let Response = await GetCurrentUser.func()
+        exampleEmbed.setFields({ name: 'Status', value: Response, inline: false })
+
+        await interaction.reply({ embeds: [exampleEmbed] });
+
+	} else if (commandName === 'autolisttransferpile') {
+
+        let Response = await AutolistTransferPile.func()
+        exampleEmbed.setFields({ name: 'Status', value: Response, inline: false })
+
+        await interaction.reply({ embeds: [exampleEmbed] });
+
 	}
+
 });
 
 // Login to Discord with your client's token

@@ -11,8 +11,6 @@ async function GetTradePile() {
             headers: {'X-UT-SID': Config.SESSION_ID}
     
         }, (error, response, body) => {
-
-            console.log(response.statusCode)
     
             try{
 

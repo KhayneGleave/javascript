@@ -1,9 +1,9 @@
 const request = require('request');
 const Config = require('./config.json').Settings;
 const SendToTransferList = require('./SendToTransferList.js')
-const IsItemInTradePile = require('./IsItemInTradePile.js')
+const IsItemInTradePile = require('./IsItemInTradePile.js');
 
-async function ListItem(Item_ID) {
+async function ListItem(Item_ID, Min, Max) {
 
     return await new Promise(async resolve => {
 
@@ -19,19 +19,18 @@ async function ListItem(Item_ID) {
 
             url: 'https://utas.mob.v1.fut.ea.com/ut/game/fifa23/auctionhouse',
             method: 'POST',
-            body: '{"buyNowPrice":' + '200' + ',"duration":3600,"itemData":{"id":' + Item_ID + '},"startingBid":' + '150' + '}',
+            body: '{"buyNowPrice":' + Max + ',"duration":3600,"itemData":{"id":' + Item_ID + '},"startingBid":' + Min + '}',
             headers: {'X-UT-SID': Config.SESSION_ID}
     
         }, function(error, response, body){
-    
+
             try{
 
-                resolve((response.statusCode == 200 && 'Listed item: ' + Item_ID + ' For Max: ' + '200' + ', Min: ' + '150') || response.statusCode)
+                console.log((response.statusCode == 200 && 'Listed item: ' + Item_ID + ' For Max: ' + Max + ', Min: ' + Min) || response.statusCode)
+            
             }catch {
 
-                console.log(response.statusCode)
-
-                resolve('An error occured: ' + response.statusCode + ': ' + body)
+                console.log('An error occured: ' + response.statusCode + ': ' + body)
     
             } finally {
 
@@ -44,8 +43,8 @@ async function ListItem(Item_ID) {
 
 }
 
-exports.func = async(Item_ID) => {
+exports.func = async(Item_ID, Min, Max) => {
 
-    return await ListItem(Item_ID)
+    return await ListItem(Item_ID, Min, Max)
 
 }

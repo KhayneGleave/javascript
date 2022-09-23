@@ -1,7 +1,7 @@
 const request = require('request');
 const Config = require('../Modules/config.json').Settings;
 
-async function GetCredits() {
+async function GetCurrentUser() {
 
     return await new Promise(resolve => {
         request({
@@ -15,7 +15,7 @@ async function GetCredits() {
 
                 let UserInfo = JSON.parse(body)
 
-                resolve(UserInfo.userInfo.personaName + ' Has ' + UserInfo.userInfo.credits + ' credits.')
+                resolve('Currently Logged in as, ' + UserInfo.userInfo.personaName + '.')
 
             }else {
 
@@ -33,6 +33,6 @@ async function GetCredits() {
 
 exports.func = async() => {
 
-    return await GetCredits()
+    return await GetCurrentUser()
 
 }
