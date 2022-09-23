@@ -26,7 +26,7 @@ async function ListItem(Item_ID, Min, Max) {
 
             try{
 
-                console.log((response.statusCode == 200 && 'Listed item: ' + Item_ID + ' For Max: ' + Max + ', Min: ' + Min) || response.statusCode)
+                console.log((response.statusCode == 200 && 'Listed item: ' + Item_ID + ' For Max: ' + Max + ', Min: ' + Min) || response.statusCode + body)
             
             }catch {
 

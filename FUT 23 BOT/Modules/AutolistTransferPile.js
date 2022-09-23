@@ -27,16 +27,16 @@ async function AutolistTransfers() {
                     await new Promise(async(resolve) => {
 
                         let ItemData = ItemInfo.itemData
-                        
+
                         if (ItemData.itemState == 'free') {
 
-                            await ListItem.func(ItemData.id, ItemData.marketDataMinPrice, ItemData.marketDataMinPrice + 50)
+                            await ListItem.func(ItemData.id, ItemData.marketDataMinPrice, ItemData.marketDataMinPrice + 100)
                             
                         }
 
-                        setTimeout(()=>resolve(), 13000)
+                        console.log('Checking index: ' + i)
 
-                        resolve()
+                        setTimeout(() => resolve(), (ItemData.itemState == 'free' && 1000) || 100)
 
                     })
                     
