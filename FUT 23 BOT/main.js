@@ -10,7 +10,7 @@ const SortUnassigned = require('./Modules/SortUnassigned.js')
 const SetSessionKey = require('./Modules/SetSessionKey.js')
 const ListItem = require('./Modules/ListItem.js');
 const GetCurrentUser = require('./Modules/GetCurrentUser.js');
-const AutolistTransferPile = require('./Modules/AutolistTransferPile.js')
+const AutolistTransferPile = require('./Modules/AutolistTransferPile.js');
 
 const exampleEmbed = new EmbedBuilder().setColor(0x0099FF).setTimestamp().setFooter({ text: 'Made by Khayne Gleave', iconURL: 'https://cdn.discordapp.com/avatars/1022425579095605328/f0f8ca1c342357e236d9e420d1ab8932.webp?size=80' });
 const commands = [
@@ -77,11 +77,8 @@ client.on('interactionCreate', async interaction => {
 
 	} else if (commandName === 'listitem') {
 
-		let Response = await ListItem.func(interaction.options.getString('input'))
-        exampleEmbed.setFields({ name: 'Status', value: Response, inline: false })
-
-        await interaction.reply({ embeds: [exampleEmbed] });
-
+		await ListItem.func(interaction.options.getString('input'))
+        
 	} else if (commandName === 'getcurrentuser') {
 
         let Response = await GetCurrentUser.func()
@@ -91,15 +88,14 @@ client.on('interactionCreate', async interaction => {
 
 	} else if (commandName === 'autolisttransferpile') {
 
-        let Response = await AutolistTransferPile.func()
-        exampleEmbed.setFields({ name: 'Status', value: Response, inline: false })
+        AutolistTransferPile.func()
+    
+       exampleEmbed.setFields({ name: 'Status', value: 'Attempting to relist players', inline: false })
 
-        await interaction.reply({ embeds: [exampleEmbed] });
-
+       await interaction.reply({ embeds: [exampleEmbed] });
 	}
 
 });
 
-// Login to Discord with your client's token
-
+Config.Client = client
 client.login(Config.BOT_TOKEN)

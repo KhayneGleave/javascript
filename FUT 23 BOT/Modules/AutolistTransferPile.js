@@ -30,17 +30,17 @@ async function AutolistTransfers() {
 
                         if (ItemData.itemState == 'free') {
 
-                            await ListItem.func(ItemData.id, ItemData.marketDataMinPrice, ItemData.marketDataMinPrice + 100)
+                            await ListItem.func(ItemData.id, ItemData.marketDataMinPrice, ItemData.marketDataMinPrice + 100, ItemData.assetId)
                             
                         }
 
                         console.log('Checking index: ' + i)
 
-                        setTimeout(() => resolve(), (ItemData.itemState == 'free' && 1000) || 100)
+                        setTimeout(() => resolve(), (ItemData.itemState == 'free' && 1000) || 10)
 
                     })
                     
-                    resolve('Test Complete')
+                    // resolve('Test Complete')
                 }
 
             }catch {

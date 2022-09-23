@@ -5,8 +5,8 @@
         "BOT_TOKEN" : "DISCORD_AUTH_TOKEN",
         "BOT_ID": "BOT_ID",
         "CLIENT_ID_TOKEN": "CLIENT_DEV_TOKEN",
-        "CLIENT_ID": "CLIENT_TOKEN"
-
+        "CLIENT_ID": "CLIENT_TOKEN",
+        "ADMIN_CHANNEL": "ADMIN_CHANNEL_ID"
     }
 
 }  
