@@ -3,7 +3,6 @@ const { REST, Client, GatewayIntentBits, SlashCommandBuilder, Routes, EmbedBuild
 const Config = require('./config.json').Settings;
 const SendToTransferList = require('./SendToTransferList.js')
 const IsItemInTradePile = require('./IsItemInTradePile.js');
-const SendBotMessage = require('../main.js')
 
 const exampleEmbed = new EmbedBuilder().setColor(0x0099FF).setTimestamp().setFooter({ text: 'Made by Khayne Gleave', iconURL: 'https://cdn.discordapp.com/avatars/1022425579095605328/f0f8ca1c342357e236d9e420d1ab8932.webp?size=80' });
 
@@ -12,16 +11,13 @@ async function ListItem(Item_ID, Min, Max, Asset_ID) {
     Min = Min || 150
     Max = Max || 200
 
-    console.log(Asset_ID)
-    console.log('https://www.ea.com/fifa/ultimate-team/web-app/content/23DF3AC5-9539-438B-8414-146FAFDE3FF2/2023/fut/items/images/mobile/portraits/' + Asset_ID.toString() + '.png')
-
     return await new Promise(async resolve => {
 
         const IsItemInCurrentTradePile = await IsItemInTradePile.func(Item_ID)
 
         if (!IsItemInCurrentTradePile) {
 
-                await SendToTransferList.func(Item_ID)
+            await SendToTransferList.func(Item_ID)
 
         }
 
@@ -75,11 +71,6 @@ async function ListItem(Item_ID, Min, Max, Asset_ID) {
 
 
     })
-
-    // console.log(Config.Client)
-
-
-
 
 }
 

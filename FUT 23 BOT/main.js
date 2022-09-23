@@ -30,7 +30,7 @@ const rest = new REST({ version: '10' }).setToken(Config.BOT_TOKEN);
 
 rest.put(Routes.applicationGuildCommands(Config.CLIENT_ID_TOKEN, Config.BOT_ID), { body: commands }).then((data) => console.log(`Successfully registered ${data.length} application commands.`)).catch(console.error);
 
-client.on("ready", () => {client.user.setActivity('+help', {type: "PLAYING"});});
+client.on("ready", () => {client.user.setActivity('EA Mald', {type: 3});});
 
 client.on('interactionCreate', async interaction => {
 

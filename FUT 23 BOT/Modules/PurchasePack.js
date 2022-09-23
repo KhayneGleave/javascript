@@ -1,5 +1,7 @@
 const request = require('request');
 const Config = require('./config.json').Settings;
+const QuicksellItem = require('./QuicksellItem.js')
+const ListItem = require('./ListItem.js')
 
 async function PurchasePack (Pack_ID) {
 
@@ -31,15 +33,21 @@ async function PurchasePack (Pack_ID) {
 
                         if (item_Type == 'player') {
 
-                            // await Ancestor.SendToTransferList(ItemList.id)
+                            ListItem.func(ItemList.id, ItemList.marketDataMinPrice, ItemList.marketDataMinPrice + 100, ItemList.assetId)
 
                         }else {
 
-                            // await Ancestor.QuicksellItem(ItemList.id, 1)
+                            request({
+                            
+                                url: 'https://utas.mob.v1.fut.ea.com/ut/game/fifa23/purchased/items',
+
+                            })
+
+                            QuicksellItem.func(ItemList.id, ItemList.discardValue)
 
                         }
 
-                        setTimeout(()=>resolve(),1000)
+                        setTimeout(() => resolve(), (ItemList.itemState == 'free' && 1000) || 10)
 
                     })
 
