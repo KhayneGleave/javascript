@@ -1,8 +1,7 @@
-
 const request = require('request')
-const GetIdFromUsername = require('./GetIdFromUsername.js')
+const GetIdFromUsername = require('../User/GetIdFromUsername.js')
 
-exports.func=async(User_ID)=>{
+exports.func = async (User_ID) => {
 
     return await new Promise(async resolve => {
 
@@ -14,22 +13,20 @@ exports.func=async(User_ID)=>{
 
         request({
 
-            url: 'https://thumbnails.roblox.com/v1/batch',
-            method: 'POST',
-            body: `[{"type":"Avatar","targetId":${User_ID},"token":"","format":"png","size":"720x720"}]`,
-            headers: {"Content-Type": "application/json"},
+            url: `https://avatar.roblox.com/v1/users/${User_ID}/currently-wearing`,
 
-        }, async (error, response, body) => {
+        }, async (_, response, body) => {
 
             if (response.statusCode == 200) {
 
-                resolve(JSON.parse(body).data[0].imageUrl)
+                resolve(JSON.parse(body))
 
             }else {
 
                 resolve(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
-                
+
             }
+
 
         })
 

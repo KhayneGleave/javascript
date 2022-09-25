@@ -30,17 +30,17 @@ exports.func = async(Asset_ID) => {
 
                 if (Item_Data.success) {
 
-                    console.log(`Successfully removed ${Item_Info.Name}.`)
+                    resolve(`Successfully removed ${Item_Info.Name}.`)
 
                 }else {
 
-                    console.log(`${response.statusCode}:  ${body}`)
+                    resolve(`${response.statusCode}:  ${body}`)
 
                 }
 
             }else {
 
-                console.log(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
+                resolve(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
 
             }
         
