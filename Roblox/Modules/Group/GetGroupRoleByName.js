@@ -41,7 +41,8 @@ exports.func = async(Group_ID, Role_Name) => {
 
             }else {
 
-                console.log(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
+                resolve(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
+            
             }
 
 

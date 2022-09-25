@@ -19,11 +19,11 @@ exports.func = async (User_ID) => {
 
             if (response.statusCode == 200) {
 
-                console.log(JSON.parse(body))
+                resolve(JSON.parse(body))
 
             }else {
 
-                console.log(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
+                resolve(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
 
             }
 

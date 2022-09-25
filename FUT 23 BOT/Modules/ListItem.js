@@ -58,7 +58,7 @@ async function ListItem(Item_ID, Min, Max, Asset_ID) {
                     
                 }catch {
 
-                    console.log('An error occured: ' + response.statusCode + ': ' + body)
+                    resolve('An error occured: ' + response.statusCode + ': ' + body)
         
                 } finally {
 

@@ -44,11 +44,11 @@ exports.func = async(Group_ID, User_ID, Role_Name) => {
 
             if (response.statusCode == 200) {
 
-                console.log(`Successfully added role: ${Role_Name} to  member: ${User_Name}`)
+                resolve(`Successfully added role: ${Role_Name} to  member: ${User_Name}`)
 
             }else {
 
-                console.log(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
+                resolve(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
             
             }
 
