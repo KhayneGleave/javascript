@@ -22,6 +22,6 @@ exports.func = async(Asset_ID) => {
  
         })   
  
-         
      })
+     
 }

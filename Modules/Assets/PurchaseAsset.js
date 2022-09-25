@@ -22,12 +22,12 @@ exports.func = async(Asset_ID) => {
             body: `{"expectedCurrency":1,"expectedPrice":${Price},"expectedSellerId":${Seller_ID}}`,
             headers: {
                 
-                'cookie': '.ROBLOSECURITY=' + Config.ROBLOSECURITY,
+                'cookie': `.ROBLOSECURITY=${Config.ROBLOSECURITY}`,
                 'x-csrf-token': x_csrf,
                 'content-type': 'application/json;charset=UTF-8'
 
             }
-        }, async (error, response, body) => {
+        }, async (_, response, body) => {
 
             if (response.statusCode == 200) {
 

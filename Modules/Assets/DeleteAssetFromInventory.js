@@ -1,22 +1,24 @@
 const request = require('request');
 const Config = require('../config.json')
 const GetToken = require('../Util/GetToken.js')
-const GetAssetDetails = require('../Assets/GetAssetInfo.js')
+const GetAssetDetails = require('../Util/GetProductDetails.js')
 
 exports.func = async(Asset_ID) => {
 
     return await new Promise(async resolve => {
 
         const x_csrf = await GetToken.func()
-        const Item_Info = await  GetAssetDetails.func(Asset_ID)
+        const Asset_Data = await GetAssetDetails.func(Asset_ID)
+
 
         request({
 
-            url: `https://avatar.roblox.com/v1/avatar/assets/${Asset_ID}/remove`,
+            url: 'https://www.roblox.com/asset/delete-from-inventory',
             method: 'POST',
+            body: `assetId=${Asset_ID}`,
             headers: {
 
-                'cookie': '.ROBLOSECURITY=' + Config.ROBLOSECURITY,
+                'cookie': `.ROBLOSECURITY=${Config.ROBLOSECURITY}`,
                 'x-csrf-token': x_csrf,
                 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
 
@@ -28,9 +30,9 @@ exports.func = async(Asset_ID) => {
 
                 const Item_Data = JSON.parse(body)
 
-                if (Item_Data.success) {
+                if (Item_Data.isValid) {
 
-                    resolve(`Successfully removed ${Item_Info.Name}.`)
+                    resolve(`Deleted ${Asset_Data.name} from inventory.`)
 
                 }else {
 
@@ -40,7 +42,7 @@ exports.func = async(Asset_ID) => {
 
             }else {
 
-                resolve(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
+                resolve(`An error occured with this action, recieved ${response.statusCode} from server`)
 
             }
         

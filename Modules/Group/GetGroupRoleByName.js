@@ -13,7 +13,7 @@ exports.func = async(Group_ID, Role_Name) => {
             headers: {
 
                 "Content-Type": "application/json",
-                'cookie': '.ROBLOSECURITY=' + Config.ROBLOSECURITY,
+                'cookie': `.ROBLOSECURITY=${Config.ROBLOSECURITY}`,
 
             }
 
@@ -41,8 +41,7 @@ exports.func = async(Group_ID, Role_Name) => {
 
             }else {
 
-                resolve(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
-            
+                console.log(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
             }
 
 

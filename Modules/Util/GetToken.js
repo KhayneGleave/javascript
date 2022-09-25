@@ -9,9 +9,9 @@ exports.func = async() => {
 
             url: 'https://auth.roblox.com/v2/logout', //Noblox Method, https://github.com/noblox/noblox.js/blob/master/lib/util/getGeneralToken.js
             method: 'POST',
-            headers: {'cookie': '.ROBLOSECURITY=' + Config.ROBLOSECURITY} //Only .ROBLOSECURITY is required.
+            headers: {'cookie': `.ROBLOSECURITY=${Config.ROBLOSECURITY}`} //Only .ROBLOSECURITY is required.
 
-        }, async (error, response, body) => {
+        }, async (_, response, body) => {
 
             resolve(response.headers['x-csrf-token']) //Returns token to exports.func.
 

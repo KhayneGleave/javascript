@@ -13,8 +13,8 @@ exports.func = async(Group_Name) => {
             headers: {
 
                 "Content-Type": "application/json; charset=utf-8",
-                'cookie': '.ROBLOSECURITY=' + Config.ROBLOSECURITY,
-
+                'cookie': `.ROBLOSECURITY=${Config.ROBLOSECURITY}`,
+                
             }
 
         }, async(_, response, body) => {
@@ -26,6 +26,7 @@ exports.func = async(Group_Name) => {
             }else {
 
                 resolve(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
+                
             }
 
 

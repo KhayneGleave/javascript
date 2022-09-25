@@ -10,7 +10,7 @@ exports.func = async() => {
             url: 'https://avatar.roblox.com/v1/avatar-rules',
             headers: {
 
-                'cookie': '.ROBLOSECURITY=' + Config.ROBLOSECURITY,
+                'cookie': `.ROBLOSECURITY=${Config.ROBLOSECURITY}`,
                 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
 
             },

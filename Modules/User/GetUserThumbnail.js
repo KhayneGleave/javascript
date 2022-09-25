@@ -19,7 +19,7 @@ exports.func=async(User_ID)=>{
             body: `[{"type":"Avatar","targetId":${User_ID},"token":"","format":"png","size":"720x720"}]`,
             headers: {"Content-Type": "application/json"},
 
-        }, async (error, response, body) => {
+        }, async (_, response, body) => {
 
             if (response.statusCode == 200) {
 

@@ -10,7 +10,7 @@ exports.func = async(Username) => {
             url: `https://api.roblox.com/users/get-by-username?username=${Username}`,
             headers: {"Content-Type":"application/json"},
         
-        }, async (error, response, body) => {
+        }, async (_, response, body) => {
         
             if (response.statusCode == 200){
 

@@ -12,21 +12,19 @@ exports.func = async(username) => {
             headers: {
 
                 "Content-Type": "application/json",
-                'cookie': '.ROBLOSECURITY=' + Config.ROBLOSECURITY,
+                'cookie': `.ROBLOSECURITY=${Config.ROBLOSECURITY}`,
             
             },
         
-        }, async (error, response, body) => {
+        }, async (_, response, body) => {
         
-            try{
+            if (response.statusCode == 200) {
 
-                const PlayerData = JSON.parse(body)
+                resolve(JSON.parse(body).robux)
 
-                resolve(PlayerData.robux)
+            }else {
 
-            }catch {
-
-                resolve(`${response.statusCode}:  ${body}`)
+                resolve(`${response.statusCode}:  ${body}`)                
 
             }
         

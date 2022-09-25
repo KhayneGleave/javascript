@@ -12,11 +12,11 @@ exports.func = async(Asset_ID) => {
 
         request({
 
-            url: `https://avatar.roblox.com/v1/avatar/assets/${Asset_ID}/wear`,
+            url: `https://avatar.roblox.com/v1/avatar/assets/${Asset_ID}/remove`,
             method: 'POST',
             headers: {
 
-                'cookie': '.ROBLOSECURITY=' + Config.ROBLOSECURITY,
+                'cookie': `.ROBLOSECURITY=${Config.ROBLOSECURITY}`,
                 'x-csrf-token': x_csrf,
                 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
 
@@ -30,7 +30,7 @@ exports.func = async(Asset_ID) => {
 
                 if (Item_Data.success) {
 
-                    resolve(`Successfully wore ${Item_Info.Name}.`)
+                    resolve(`Successfully removed ${Item_Info.Name}.`)
 
                 }else {
 

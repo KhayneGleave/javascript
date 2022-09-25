@@ -15,7 +15,7 @@ exports.func = async(Asset_ID) => {
             body: `{"items":[{"itemType":"Asset","id":${Asset_ID}}]}`,
             headers: {
                 
-                'cookie': '.ROBLOSECURITY=' + Config.ROBLOSECURITY,
+                'cookie': `.ROBLOSECURITY=${Config.ROBLOSECURITY}`,
                 'x-csrf-token': x_csrf,
                 'content-type': 'application/json;charset=UTF-8'
 

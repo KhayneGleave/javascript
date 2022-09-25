@@ -2,40 +2,31 @@
 const request = require('request');
 const Config = require('../config.json')
 const GetToken = require('../Util/GetToken.js')
-const GetConversationId = require('./GetConversationId.js')
-const GetIdFromUsername = require('../User/GetIdFromUsername.js')
 
-exports.func = async(User_ID, Message) => {
+exports.func = async(User_ID) => {
 
     return await new Promise(async resolve => {
 
-        if (typeof(User_ID) == 'string') {
-
-            User_ID = await GetIdFromUsername.func(User_ID)
-
-        }
-
         const x_csrf = await GetToken.func()
-        const Conversation_ID = await GetConversationId.func(User_ID)
 
         request({
 
-            url: 'https://chat.roblox.com/v2/send-message',
+            url: 'https://chat.roblox.com/v2/start-one-to-one-conversation',
             method: 'POST',
-            body: `{"conversationId":"${Conversation_ID}","message":"${Message}"}`,
+            body: `{"participantUserId":${User_ID}}`,
             headers: {
 
                 "Content-Type": "application/json",
-                'cookie': '.ROBLOSECURITY=' + Config.ROBLOSECURITY,
+                'cookie': `.ROBLOSECURITY=${Config.ROBLOSECURITY}`,
                 'x-csrf-token': x_csrf
             
             },
         
-        }, async (error, response, body) => {
+        }, async (_, response, body) => {
         
             if (response.statusCode == 200) {
 
-                resolve(JSON.parse(body))
+                resolve(JSON.parse(body).conversation.id)
 
             }else {
 

@@ -35,7 +35,7 @@ exports.func = async(Group_ID, User_ID, Role_Name) => {
             headers: {
 
                 "Content-Type": "application/json",
-                'cookie': '.ROBLOSECURITY=' + Config.ROBLOSECURITY,
+                'cookie': `.ROBLOSECURITY=${Config.ROBLOSECURITY}`,
                 'x-csrf-token': x_csrf
 
             }
