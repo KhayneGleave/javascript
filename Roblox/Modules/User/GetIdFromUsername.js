@@ -1,32 +1,30 @@
 
 const request = require('request');
 
-exports.func = async(User_ID) => {
+exports.func = async(Username) => {
 
     return await new Promise(resolve => {
 
         request({
 
-            url: `https://api.roblox.com/users/${User_ID}`,
+            url: `https://api.roblox.com/users/get-by-username?username=${Username}`,
             headers: {"Content-Type":"application/json"},
         
         }, async (error, response, body) => {
         
-           if (response.statusCode == 200) {
+            if (response.statusCode == 200){
 
-                resolve(JSON.parse(body).Username)
+                resolve(JSON.parse(body).Id)
 
-
-           }else {
+            }else {
 
                 resolve(`An error occured with this action, recieved ${response.statusCode} from server with response [${JSON.parse(body).errors[0].message}]`)
 
-           }
+            }
+
         
         })
         
     })
 
 }
-
-exports.func(132784023)

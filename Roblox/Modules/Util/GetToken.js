@@ -13,7 +13,7 @@ exports.func = async() => {
 
         }, async (error, response, body) => {
 
-            resolve(response.headers['x-csrf-token']) //Returns token to callingscript.
+            resolve(response.headers['x-csrf-token']) //Returns token to exports.func.
 
         })
 

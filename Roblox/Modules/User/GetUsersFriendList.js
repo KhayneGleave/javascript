@@ -33,5 +33,3 @@ exports.func = async (User_ID) => {
     })
 
 }
-
-exports.func(112007483)
